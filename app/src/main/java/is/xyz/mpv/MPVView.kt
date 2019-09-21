@@ -48,7 +48,7 @@ internal class MPVView(context: Context, attrs: AttributeSet) : SurfaceView(cont
 
         // hwdec
         val hwdec = if (sharedPreferences.getBoolean("hardware_decoding", true))
-            "auto"
+            "mediacodec-copy"
         else
             "no"
 
@@ -117,7 +117,8 @@ internal class MPVView(context: Context, attrs: AttributeSet) : SurfaceView(cont
         }
 
         MPVLib.setOptionString("vo", vo)
-        MPVLib.setOptionString("gpu-context", "android")
+        MPVLib.setOptionString("gpu-context", "androidvk")
+        MPVLib.setOptionString("msg-level", "vo=debug")
         MPVLib.setOptionString("opengl-es", "yes")
         MPVLib.setOptionString("hwdec", hwdec)
         MPVLib.setOptionString("hwdec-codecs", "h264,hevc,mpeg4,mpeg2video,vp8,vp9,av1")
